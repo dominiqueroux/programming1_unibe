@@ -1,3 +1,12 @@
+/*
+************************************************************
+HS Programming 1
+1_2
+Dominique Roux, 16-100-661
+Marc Bachofner, 15-135-916
+************************************************************
+*/
+
 import java.util.Scanner;
 
 public class Divide {
