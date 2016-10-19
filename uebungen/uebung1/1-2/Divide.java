@@ -25,7 +25,7 @@ public class Divide {
         unround_result = Math.pow(a,2)/b;
 
         // Calculate with modulo and rest
-        round_result = Math.round(Math.pow(a,2)/b);
+        round_result = (int)(Math.pow(a,2)/b);
         rest = Math.pow(a,2)%b;
 
         // print out results
