@@ -20,7 +20,7 @@ public class Divide {
 
         System.out.println("Enter Number b:");
         b = in.nextInt();
-        
+       
         // Calculate as floating point number
         unround_result = Math.pow(a,2)/b;
 
