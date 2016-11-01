@@ -72,7 +72,7 @@ public class GuessOrc {
                 strGuess = strGuess.toLowerCase();
                 intGuess = getColumnAsInt(strGuess.charAt(0));
                     if ( movesMade() >= MAX_ATTEMPTS ) {
-                            System.out.println("You lose ! The orcs attacked from mine shaft " + getMineShaftAsChar(mineShaftId));
+                            System.out.println("You lose ! The orcs attacked from mine shaft '" + getMineShaftAsChar(mineShaftId) +"'");
                             won = true;
                     } else {
                            if ( intGuess == PARSING_FAILED ) {
@@ -85,7 +85,7 @@ public class GuessOrc {
                                         won = true;
 
                                 } else {
-                                        printMap(intGuess, calculateHint(intGuess));
+                                        printMap(intGuess, calculateHint(intGuess, generator));
                                         System.out.println("Next Guess? ");
                                         strGuess = scn.nextLine();
                                 }
@@ -107,7 +107,7 @@ public class GuessOrc {
 	 * @param guessedMineShaftId the guessed mine shaft.
 	 * @return the id for a hint in HINT.
 	 */
-	public int calculateHint( int guessedMineShaftId ){
+	public int calculateHint( int guessedMineShaftId, Random generator ){
         int intHintId = generator.nextInt(5);
 
         if (guessedMineShaftId > mineShaftId) {
