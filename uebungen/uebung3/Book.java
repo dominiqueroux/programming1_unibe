@@ -53,7 +53,7 @@ public class Book
 	public String toString()
 	{
 		// TODO: Insert your code here!
-		String bookInfo = this.getId() + ", " + this.getTitle() + ", " + this.getAuthor() + ", " + this.getDateOfPublication();
+		String bookInfo = this.getId() + ", " + this.getTitle() + ", " + this.getAuthor() + ", " + this.getDateOfPublication() + ", " + this.getPrice() + " CHF";
 		return bookInfo; //this is to avoid compiler errors, replace it!
 	}
 
