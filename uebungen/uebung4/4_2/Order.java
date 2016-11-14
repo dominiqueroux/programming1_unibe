@@ -7,6 +7,7 @@
 import java.util.Date;
 import java.util.Scanner;
 import java.text.*;
+import java.util.*;
 //import java.text.NumberFormat;
 
 
@@ -15,9 +16,8 @@ public class Order {
 	private static int Id = 0;
 	private String customerName = " ";
 	private String customerAddress = " ";
-	private IArticle article1, article2, article3, article4, article5;
+    private ArrayList<IArticle> articles = new ArrayList<IArticle>();
 	
-    private int articleCounter = 1;
 	
 	public Order(String customerName, String customerAddress) {
 		this.Id = Id;
@@ -55,48 +55,23 @@ public class Order {
 	
 	public void add(IArticle article) {
 
-        switch (articleCounter) {
-            case 1:
-                article1 = article;
-                break;
-            case 2:
-                article2 = article;
-                break;
-            case 3:
-                article3 = article;
-                break;
-            case 4:
-                article4 = article;
-                break;
-            case 5:
-                article5 = article;
-                break;
-            default:
-                break;
-        }
+        articles.add(article);
 
-        articleCounter++;
 	}
 	
 	public int getTotalPrice() {
 		int sum = 0;
 
-        if (articleCounter > 5)
-            sum += this.article5.getPrice();
-        if (articleCounter > 4)
-            sum += this.article4.getPrice();
-        if (articleCounter > 3)
-            sum += this.article3.getPrice();
-        if (articleCounter > 2)
-            sum += this.article2.getPrice();
-        if (articleCounter > 1)
-            sum += this.article1.getPrice();
+        for ( IArticle a: this.articles ) {
+            sum += a.getPrice();
+        }
+
 		return sum;
 	}
 
     
     public Iterable<IArticle> getOrderedArticles() {
-        return (Iterable<IArticle>) article4;
+        return articles;
     }
 	
 	public String toString() {
@@ -105,16 +80,9 @@ public class Order {
 
 		output = "Order ID: "+ this.getId() + ", Costumer: " + this.getCustomerName() + ", " + this.getCustomerAddress()+"\n";
 
-        if (articleCounter > 1)
-            output += article1.toString() + "\n";
-        if (articleCounter > 2)
-            output += article2.toString() + "\n";
-        if (articleCounter > 3)
-            output += article3.toString() + "\n";
-        if (articleCounter > 4)
-            output += article4.toString() + "\n";
-        if (articleCounter > 5)
-            output += article5.toString() + "\n";
+        for ( IArticle a: this.articles ) {
+            output += a.toString() + "\n";
+        }
 
 		output += "\n Total price: "+ this.getTotalPrice() + " CHF";
 		return output;
