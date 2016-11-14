@@ -3,7 +3,7 @@
 \* ************************************************************************** */
 
 
-public class DVD
+public class DVD implements IArticle
 {
 	private int id;
 	private String title;

@@ -13,103 +13,108 @@ import java.text.*;
 public class Order {
 	//private NumberFormat fmt = NumberFormat.getCurrencyInstance();
 	private static int Id = 0;
-	private String costumerName = " ";
-	private String costumerAdress = " ";
-	private Book book1, book2, book3, book4, book5;
+	private String customerName = " ";
+	private String customerAddress = " ";
+	private IArticle article1, article2, article3, article4, article5;
 	
-    private int bookCounter = 1;
+    private int articleCounter = 1;
 	
-	public Order(String costumerName, String costumerAdress) {
+	public Order(String customerName, String customerAddress) {
 		this.Id = Id;
 		Id++;
-		this.costumerName = costumerName;
-		this.costumerAdress = costumerAdress;
+		this.customerName = customerName;
+		this.customerAddress = customerAddress;
 	}
 	
 	public Order() {
 		this.Id = Id;
 		Id ++;
-		this.costumerName = "DEFAULT";
-		this.costumerAdress = "DEFAULT";
+		this.customerName = "DEFAULT";
+		this.customerAddress = "DEFAULT";
 	}
 
 	public void setCustomerName(String name) {
-		this.costumerName = name;
+		this.customerName = name;
 	}
 	
 	public void setCustomerAddress(String adress) {
-		this.costumerAdress = adress;
+		this.customerAddress = adress;
 	}
 	
-	public String getCostumerName() {
-		return this.costumerName;
+	public String getCustomerName() {
+		return this.customerName;
 	}
 	
-	public String getCostumerAdress() {
-		return this.costumerAdress;
+	public String getCustomerAddress() {
+		return this.customerAddress;
 	}
 	
 	public int getId() {
 		return this.Id;
 	}
 	
-	public void addBook(Book book) {
+	public void add(IArticle article) {
 
-        switch (bookCounter) {
+        switch (articleCounter) {
             case 1:
-                book1 = book;
+                article1 = article;
                 break;
             case 2:
-                book2 = book;
+                article2 = article;
                 break;
             case 3:
-                book3 = book;
+                article3 = article;
                 break;
             case 4:
-                book4 = book;
+                article4 = article;
                 break;
             case 5:
-                book5 = book;
+                article5 = article;
                 break;
             default:
                 break;
         }
 
-        bookCounter++;
+        articleCounter++;
 	}
 	
 	public int getTotalPrice() {
 		int sum = 0;
 
-        if (bookCounter > 5)
-            sum += this.book5.getPrice();
-        if (bookCounter > 4)
-            sum += this.book4.getPrice();
-        if (bookCounter > 3)
-            sum += this.book3.getPrice();
-        if (bookCounter > 2)
-            sum += this.book2.getPrice();
-        if (bookCounter > 1)
-            sum += this.book1.getPrice();
+        if (articleCounter > 5)
+            sum += this.article5.getPrice();
+        if (articleCounter > 4)
+            sum += this.article4.getPrice();
+        if (articleCounter > 3)
+            sum += this.article3.getPrice();
+        if (articleCounter > 2)
+            sum += this.article2.getPrice();
+        if (articleCounter > 1)
+            sum += this.article1.getPrice();
 		return sum;
 	}
+
+    
+    public Iterable<IArticle> getOrderedArticles() {
+        return (Iterable<IArticle>) article4;
+    }
 	
 	public String toString() {
 
 		String output;
 
-		output = "Order ID: "+ this.getId() + ", Costumer: " + this.getCostumerName() + ", " + this.getCostumerAdress()+"\n";
+		output = "Order ID: "+ this.getId() + ", Costumer: " + this.getCustomerName() + ", " + this.getCustomerAddress()+"\n";
 
-        if (bookCounter > 1)
-            output += book1.toString() + "\n";
-        if (bookCounter > 2)
-            output += book2.toString() + "\n";
-        if (bookCounter > 3)
-            output += book3.toString() + "\n";
-        if (bookCounter > 4)
-            output += book4.toString() + "\n";
-        if (bookCounter > 5)
-            output += book5.toString() + "\n";
+        if (articleCounter > 1)
+            output += article1.toString() + "\n";
+        if (articleCounter > 2)
+            output += article2.toString() + "\n";
+        if (articleCounter > 3)
+            output += article3.toString() + "\n";
+        if (articleCounter > 4)
+            output += article4.toString() + "\n";
+        if (articleCounter > 5)
+            output += article5.toString() + "\n";
 
 		output += "\n Total price: "+ this.getTotalPrice() + " CHF";
 		return output;

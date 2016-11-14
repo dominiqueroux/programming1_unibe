@@ -3,7 +3,7 @@
 \* ************************************************************************** */
 
 
-public class CD
+public class CD implements IArticle
 {
 	private int id;
 	private String title;
