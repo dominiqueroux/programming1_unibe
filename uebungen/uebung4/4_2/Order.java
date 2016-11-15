@@ -13,22 +13,23 @@ import java.util.*;
 
 public class Order {
 	//private NumberFormat fmt = NumberFormat.getCurrencyInstance();
-	private static int Id = 0;
+	private int Id = 0;
+    private static int nextId = 1; 
 	private String customerName = " ";
 	private String customerAddress = " ";
     private ArrayList<IArticle> articles = new ArrayList<IArticle>();
 	
 	
 	public Order(String customerName, String customerAddress) {
-		this.Id = Id;
-		Id++;
+		this.Id = nextId;
+		nextId++;
 		this.customerName = customerName;
 		this.customerAddress = customerAddress;
 	}
 	
 	public Order() {
-		this.Id = Id;
-		Id ++;
+		this.Id = nextId;
+		nextId ++;
 		this.customerName = "DEFAULT";
 		this.customerAddress = "DEFAULT";
 	}
