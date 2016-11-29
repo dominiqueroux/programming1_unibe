@@ -1,47 +1,78 @@
 import java.util.*;
+import java.io.*;
 
 public class AddressFile
 {
+    private String filename;
+
     public AddressFile(String file) {
-        String filename = file;
+        this.filename = file;
     }
 
     public String toLine(Address addr) throws AddressFileException {
-        String output;
+        String output = "";
 
         output+="," + addr.getName() + "," + addr.getStreet() + "," + addr.getZipCode() + "," + addr.getCity();
 
         return output;
     }
 
-    Address parseLine(String line) {
+    Address parseLine(String line) throws AddressFileException {
         String name, street, city;
+        Address addr;
         int zipCode;
-        int id = 1;
+        int id;
+
         try {
             Scanner sc = new Scanner(line);
             sc.useDelimiter(",");
 
+            id = Integer.parseInt(sc.next().trim());
+
             name = sc.next();
             name.trim();
+
             street = sc.next();
             street.trim();
-            zipCode = sc.nextInt();
+
+            zipCode = Integer.parseInt(sc.next().trim());
+
             city = sc.next();
             city.trim();
 
-            Address addr = new Address(id, name, street, zipCode, city);
-          
-        } catch (AddressFileException e) {
-            System.out.println("\n Invalid format. \n");
+            addr = new Address (id, name, street, zipCode, city);
+
+        } catch (Exception e) {
+            throw new AddressFileException("Invalid File");
+        }  
+        return addr;
+
+    }
+
+    void save(ArrayList<Address> addresses) throws IOException {
+        PrintWriter file = new PrintWriter(
+                new BufferedWriter(new FileWriter(this.filename)));
+
+        for ( Address a : addresses) {
+            file.println(a);
         }
+
+        file.close();
     }
 
-    void save(ArrayList<Address> addresses) {
-        System.out.println("Save method");      
-    }
+    ArrayList<Address> load() throws AddressFileException {
+        String line;
+        ArrayList<Address> list = new ArrayList<Address>();
+        try {
+            Scanner fileScan = new Scanner(new File(this.filename));
+            while (fileScan.hasNextLine()) {
+                line = fileScan.nextLine();
+                list.add(this.parseLine(line));
+            }
+        } catch ( FileNotFoundException e ) {
+            System.out.println("File not found");
+        }
 
-    ArrayList<Address> load() {
-        System.out.println("load method");
+        return list;
     }
 }
