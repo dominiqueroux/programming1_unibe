@@ -12,7 +12,7 @@ public class AddressFile
     public String toLine(Address addr) throws AddressFileException {
         String output = "";
 
-        output+="," + addr.getName() + "," + addr.getStreet() + "," + addr.getZipCode() + "," + addr.getCity();
+        output+= addr.getId() + ", " + addr.getName() + ", " + addr.getStreet() + ", " + addr.getZipCode() + ", " + addr.getCity();
 
         return output;
     }
@@ -54,7 +54,11 @@ public class AddressFile
                 new BufferedWriter(new FileWriter(this.filename)));
 
         for ( Address a : addresses) {
-            file.println(a);
+            try {
+                file.println(this.toLine(a));
+            } catch (AddressFileException e) {
+                System.out.println("Invalid format");
+            }
         }
 
         file.close();
