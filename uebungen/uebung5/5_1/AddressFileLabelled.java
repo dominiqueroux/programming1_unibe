@@ -15,7 +15,7 @@ public class AddressFileLabelled extends AddressFile
         return output;
     }
 
-    Address parseLine (String line) throws  AddressFileException {
+    public Address parseLine (String line) throws  AddressFileException {
         String name, street, city;
         String[] label = {"id", "name", "street", "zip", "city"};
         Address addr;

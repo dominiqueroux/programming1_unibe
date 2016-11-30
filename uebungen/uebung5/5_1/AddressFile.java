@@ -17,7 +17,7 @@ public class AddressFile
         return output;
     }
 
-    Address parseLine(String line) throws AddressFileException {
+    public Address parseLine(String line) throws AddressFileException {
         String name, street, city;
         Address addr;
         int zipCode;
@@ -49,7 +49,7 @@ public class AddressFile
 
     }
 
-    void save(ArrayList<Address> addresses) throws IOException {
+    public void save(ArrayList<Address> addresses) throws IOException {
         PrintWriter file = new PrintWriter(
                 new BufferedWriter(new FileWriter(this.filename)));
 
@@ -64,7 +64,7 @@ public class AddressFile
         file.close();
     }
 
-    ArrayList<Address> load() throws AddressFileException {
+    public ArrayList<Address> load() throws AddressFileException {
         String line;
         ArrayList<Address> list = new ArrayList<Address>();
         try {
