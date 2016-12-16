@@ -10,7 +10,7 @@ public class iterate {
     }
 
     static void iterative( int i ) {
-        if ( i == 30 )
+        if ( i == 33 )
             System.exit(0);
 
         System.out.println(i);
